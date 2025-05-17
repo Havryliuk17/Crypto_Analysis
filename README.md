@@ -18,7 +18,8 @@ The platform continuously ingests real-time cryptocurrency data from BitMEX webs
 ## 🧠 2. System Design & Architecture
 
 This section describes the design of the platform. The diagram below represents the system architecture.
-[Architecture]()
+
+![Architecture of the system](images/crypto-analysis-architecture.png)
 
 
 #### External Source
@@ -208,7 +209,7 @@ GET http://localhost:8000/query/ADAUSD/price
 After ruuning the system during $$$ hours, the folloowing results are obtained.
 
 ```md
-![Kafka running screenshot](results/kafka_running.png)
+![Architecture of the system](images/crypto-analysis-architecture.png)
 ![API response screenshot](results/api_response.png)
 ```
 
