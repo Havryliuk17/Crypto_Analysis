@@ -122,48 +122,82 @@ Also the Redis DB stores real-time data used for some requests. Its advantages a
 
 ## 📡 4. API Documentation
 
-**(Satisfies: *"Results examples for each of the API calls"*)**
-
 Divide into the required categories:
 
 ### 4.1. Category A: Precomputed Report APIs
 
 | Endpoint                    | Method | Description             |
 | --------------------------- | ------ | ----------------------- |
-| `/api/v1/report/top-volume` | GET    | Top N symbols by volume |
+| `/reports/hourly-counts` | GET    | Returns the number of transactions for each cryptocurrency for each hour in the last 6 hours, excluding the previous hour.|
+| `/reports/volume-6h` | GET    |  Returns the total trading volume for each cryptocurrency for the last 6 hours, excluding the previous hour. |
+| `/reports/hourly-count-volume` | GET    | Returns the number of trades and their total volume for each hour in the last 12 hours, excluding the current hour. |
 
-📌 **Sample request and response**
+📌 **Examples of requests and responses**
 
 ```bash
-GET /api/v1/report/top-volume?interval=1h
+GET /reports/hourly-counts
 ```
 
 ```json
-{
-  "interval": "1h",
-  "top": [
-    {"symbol": "BTCUSD", "volume": 1500000},
-    {"symbol": "ETHUSD", "volume": 1200000}
-  ]
-}
+
+```
+
+```bash
+GET /reports/volume-6h
+```
+
+```json
+
+```
+```bash
+GET /reports/hourly-count-volume
+```
+
+```json
+
 ```
 
 ### 4.2. Category B: Ad-hoc Query APIs
 
-| Endpoint                     | Method | Description                          |
+| Endpoint                     | Method | Output                          |
 | ---------------------------- | ------ | ------------------------------------ |
-| `/api/v1/query/price-change` | GET    | Returns price change over time range |
+| `/query/{symbol}/trades` | GET    | Returns the number of trades processed in a cryptocurrency {symbol} in the last N minutes, excluding the last minute. |
+| `/query/top-volume` | GET    | Returns the top N cryptocurrencies with the highest trading volume in the last hour. |
+| `/query/{symbol}/price` | GET    | Return the cryptocurrency’s current price for «Buy» and «Sell» sides based on its {symbol}. |
 
-📌 **Sample**
+📌 **Examples of requests and responses**
 
 ```bash
-GET /api/v1/query/price-change?symbol=XBTUSD&start=2025-05-10&end=2025-05-15
+GET http://localhost:8000/query/ADAUSD/trades?minutes=40
+```
+
+```json
+{
+  "symbol": "ADAUSD",
+  "minutes": 40,
+  "num_trades": 4
+}
+```
+
+```bash
+GET /query/top-volume
 ```
 
 ```json
 {
   "symbol": "XBTUSD",
   "price_change_percent": 4.25
+}
+```
+```bash
+GET http://localhost:8000/query/ADAUSD/price
+```
+
+```json
+{
+  "symbol": "ADAUSD",
+  "buy": 0.7654,
+  "sell": 0.7653
 }
 ```
 
@@ -188,9 +222,7 @@ GET /api/v1/query/price-change?symbol=XBTUSD&start=2025-05-10&end=2025-05-15
 
 ## 🧰 6. Source Code Structure
 
-**(Satisfies: *"source code for all the components"*)**
-
-Explain the directory layout:
+The project directory layout:
 
 ```text
 📦 project-root
@@ -199,12 +231,12 @@ Explain the directory layout:
 │   ├── requirements.txt       # Dependencies for the API service
 │   └── to_api.py              # Main script for handling REST API endpoints
 │
-├── bitmex-reader/            # WebSocket client that reads data from BitMEX and sends to Kafka
+├── bitmex-reader/             # WebSocket client that reads data from BitMEX and sends to Kafka
 │   ├── Dockerfile             # Docker config for the BitMEX reader
 │   ├── requirements.txt       # Dependencies for the BitMEX reader
 │   └── to_kafka.py            # Script to connect to WebSocket and produce Kafka messages
 │
-├── spark-job/                # PySpark job to consume from Kafka and write to Cassandra
+├── spark-job/                 # PySpark job to consume from Kafka and write to Cassandra
 │   ├── Dockerfile             # Docker config for Spark job
 │   └── to_cassandra.py        # Spark script for stream processing and storing in Cassandra
 │
@@ -213,9 +245,11 @@ Explain the directory layout:
 │   ├── init-cassandra.sh     # Script to apply Cassandra schema
 │   └── init-kafka.sh         # Script to configure/start Kafka topics
 │
-├── docker-compose.yml        # Orchestrates all services using Docker
-├── diagrams/                  # Data model and system diagrams
-├── results/                   # API output samples, screenshots
+├── docker-compose.yml         # Orchestrates all services using Docker
+├── images/                    # Results, screenshots for README.md
+│   ├── crypto-analysis-architecture.png    # Diagram of the system architecture
+│   ├── 
+│   └── 
 └── README.md
 ```
 
@@ -223,16 +257,10 @@ Explain the directory layout:
 
 ## 🔧 7. Setup & Configuration
 
-* How to set up the environment
-* How to run each service
-* Environment variables or `.env` structure
-
+`docker-compose.yaml` describes all necessary containers for diffirent components. Meaning, it is quite easy to setup the project, just use command:
 ```bash
-# Example .env
-DB_URI=postgresql://user:pass@localhost:5432/crypto
-KAFKA_BOOTSTRAP=localhost:9092
+docker-compose.yaml
 ```
-
 ---
 
 ## 🧪 8. Testing Instructions
@@ -241,18 +269,14 @@ KAFKA_BOOTSTRAP=localhost:9092
 * Tools used (e.g., Postman, curl)
 * Any unit/integration tests
 
----
+After setup step, let us verify that the system works correctly and API endpoints respond as expected.
 
-## 🚀 10. Future Work
+You just may open `localhost:8000/` in **Swagger** or **Postman**, or use **curl** commands for it
 
-* Scaling for higher volumes
-* UI dashboard with real-time charts
-* Adding more exchanges (e.g., Binance)
+Examples:
+```bash
+curl http://localhost:8000/reports/volume-6h
+curl http://localhost:8000/query/{symbol}/price
+```
 
----
 
-## 📎 Appendix
-
-* Full API specs (OpenAPI/YAML or plain Markdown)
-* Data format from WebSocket
-* Scripts to clean/start services
