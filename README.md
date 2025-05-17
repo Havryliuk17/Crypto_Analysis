@@ -155,11 +155,11 @@ GET /reports/hourly-counts
     "symbol": "ETHUSD",
     "hour": "2025-05-17T03:00:00",
     "num_trades": 221
-  }
-...
+  },
 
 ]
 ```
+![endpoint 1](images/endpoint_1.png)
 
 ```bash
 GET /reports/volume-6h
@@ -176,6 +176,8 @@ GET /reports/volume-6h
   "XRPUSD": 25369
 }
 ```
+![endpoint 2](images/endpoint_2.png)
+
 ```bash
 GET /reports/hourly-count-volume
 ```
@@ -200,9 +202,10 @@ GET /reports/hourly-count-volume
     "num_trades": 894,
     "total_volume": 12908
   },
-...
 ]
 ```
+
+![endpoint 3](images/endpoint_3.png)
 
 ### 4.2. Category B: Ad-hoc Query APIs
 
@@ -222,20 +225,44 @@ GET http://localhost:8000/query/ADAUSD/trades?minutes=40
 {
   "symbol": "ADAUSD",
   "minutes": 40,
-  "num_trades": 4
+  "num_trades": 250
 }
 ```
+![endpoint 4](images/endpoint_4.png)
 
 ```bash
-GET /query/top-volume
+GET http://localhost:8000/query/top-volume?limit=5
 ```
 
 ```json
 {
-  "symbol": "XBTUSD",
-  "price_change_percent": 4.25
+  "hour_start": "2025-05-17T06:00:00+00:00",
+  "top": [
+    {
+      "symbol": "SOLUSD",
+      "total_volume": 14410
+    },
+    {
+      "symbol": "SOLUSD",
+      "total_volume": 14395
+    },
+    {
+      "symbol": "SOLUSD",
+      "total_volume": 13781
+    },
+    {
+      "symbol": "SOLUSD",
+      "total_volume": 13766
+    },
+    {
+      "symbol": "SOLUSD",
+      "total_volume": 12971
+    }
+  ]
 }
 ```
+![endpoint 5](images/endpoint_5.png)
+
 ```bash
 GET http://localhost:8000/query/ADAUSD/price
 ```
@@ -243,11 +270,11 @@ GET http://localhost:8000/query/ADAUSD/price
 ```json
 {
   "symbol": "ADAUSD",
-  "buy": 0.7654,
-  "sell": 0.7653
+  "buy": 0.7718,
+  "sell": 0.772
 }
 ```
-
+![endpoint 6](images/endpoint_6.png)
 ---
 
 ## 🧪 5. Results After System Run
