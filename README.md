@@ -205,13 +205,7 @@ GET http://localhost:8000/query/ADAUSD/price
 
 ## 🧪 5. Results After System Run
 
-**(Satisfies: *"System should be working for at least 4 hours before calling APIs"*)**
-
-* How long the system was running
-* Screenshots or logs of the running system
-* Output samples from real collected data
-
-📌 You can add images to a `/results/` folder and link them here using markdown:
+After ruuning the system during $$$ hours, the folloowing results are obtained.
 
 ```md
 ![Kafka running screenshot](results/kafka_running.png)
