@@ -1,0 +1,140 @@
+version: "3.9"
+
+networks:
+  crypto-net:
+
+volumes:
+  cassandra-data:
+  
+services:
+  zookeeper:
+    image: bitnami/zookeeper:3.9
+    environment: [ALLOW_ANONYMOUS_LOGIN=yes]
+    networks: 
+      - crypto-net
+
+  kafka:
+    image: bitnami/kafka:3.6
+    depends_on: 
+       - zookeeper
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://0.0.0.0:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true
+      - KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    networks: 
+      - crypto-net
+
+  kafka-init:
+    image: bitnami/kafka:3.6
+    depends_on:
+      kafka:
+        condition: service_started
+    entrypoint: ["/schema/init-kafka.sh"]
+    volumes:
+      - ./schema:/schema
+    networks: 
+      - crypto-net
+    restart: "no"
+
+  redis:
+    image: redis:7
+    command: ["redis-server", "--appendonly", "yes"]
+    networks: 
+      - crypto-net
+
+  cassandra:
+    image: cassandra:4.1
+    volumes: [cassandra-data:/var/lib/cassandra]
+    networks: [crypto-net]
+    environment:
+      - CASSANDRA_CLUSTER_NAME=crypto-cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+    healthcheck:
+      test: ["CMD-SHELL", "cqlsh -e 'DESC KEYSPACES' || exit 1"]
+      interval: 10s
+      retries: 20
+      start_period: 30s
+    
+  cassandra-init:
+    image: cassandra:4.1
+    depends_on:
+      cassandra:
+        condition: service_healthy
+    entrypoint: ["/schema/init-cassandra.sh"]
+    volumes:
+      - ./schema:/schema
+    networks: [crypto-net]
+    restart: "no"
+
+  spark-master:
+    image: bitnami/spark:3.5
+    depends_on:
+      cassandra:
+        condition: service_healthy
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_HOST=spark-master
+      - SPARK_MASTER_PORT=7077
+    networks: [crypto-net]
+
+  spark-worker:
+    image: bitnami/spark:3.5
+    depends_on:
+      spark-master:
+        condition: service_started
+      cassandra:
+        condition: service_healthy
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_MEMORY=2G
+      - SPARK_WORKER_CORES=2
+    networks: [crypto-net]
+
+  spark-job:
+    build: ./spark-job
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+      cassandra-init:
+        condition: service_completed_successfully
+      spark-master:
+        condition: service_started
+    networks: [crypto-net]
+    command:
+      - /opt/bitnami/spark/bin/spark-submit
+      - --master
+      - spark://spark-master:7077
+      - --conf
+      - spark.cassandra.connection.host=cassandra
+      - --packages
+      - org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0,com.datastax.spark:spark-cassandra-connector_2.12:3.5.0
+      - /app/to_cassandra.py
+    restart: unless-stopped
+
+  
+  bitmex-reader:
+    build: ./bitmex-reader
+    depends_on:
+      kafka-init:
+        condition: service_completed_successfully
+      redis:
+        condition: service_started
+    networks: 
+      - crypto-net
+    restart: unless-stopped
+
+  api:
+    build: ./api
+    depends_on:
+      redis:
+        condition: service_started
+      cassandra-init:
+        condition: service_completed_successfully
+    networks: 
+      - crypto-net
+    ports: ["8000:8000"]
+    command: ["uvicorn", "to_api:app", "--host", "0.0.0.0", "--port", "8000"]
