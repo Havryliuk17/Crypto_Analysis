@@ -281,10 +281,7 @@ GET http://localhost:8000/query/ADAUSD/price
 
 After ruuning the system during $$$ hours, the folloowing results are obtained.
 
-```md
 ![Architecture of the system](images/crypto-analysis-architecture.png)
-![API response screenshot](results/api_response.png)
-```
 
 ---
 
