@@ -140,7 +140,178 @@ GET /reports/hourly-counts
 ```
 
 ```json
-
+[
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 1410
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 906
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 221
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 440
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 296
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 253
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 379
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 904
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 439
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 418
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 342
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 269
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 160
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 142
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 57
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 52
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 33
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 39
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 348
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 215
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 120
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 131
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 192
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 105
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 11
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 3
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 10
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 12
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 677
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 2496
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 808
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 337
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 137
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 58
+  }
+]
 ```
 
 ```bash
@@ -148,14 +319,401 @@ GET /reports/volume-6h
 ```
 
 ```json
-
+{
+  "ETHUSD": 36151,
+  "ADAUSD": 91646,
+  "DOGEUSD": 14183,
+  "SOLUSD": 137986,
+  "BTCUSD": 0,
+  "BNBUSD": 120,
+  "XRPUSD": 25369
+}
 ```
 ```bash
 GET /reports/hourly-count-volume
 ```
 
 ```json
-
+[
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-16T20:00:00",
+    "num_trades": 486,
+    "total_volume": 6366
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-16T21:00:00",
+    "num_trades": 594,
+    "total_volume": 12555
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-16T22:00:00",
+    "num_trades": 894,
+    "total_volume": 12908
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-16T23:00:00",
+    "num_trades": 491,
+    "total_volume": 7488
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T00:00:00",
+    "num_trades": 1468,
+    "total_volume": 15526
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 1410,
+    "total_volume": 15748
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 906,
+    "total_volume": 10011
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 221,
+    "total_volume": 2677
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 440,
+    "total_volume": 3139
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 296,
+    "total_volume": 1772
+  },
+  {
+    "symbol": "ETHUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 253,
+    "total_volume": 2804
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-16T20:00:00",
+    "num_trades": 219,
+    "total_volume": 88444
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-16T21:00:00",
+    "num_trades": 62,
+    "total_volume": 6654
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-16T22:00:00",
+    "num_trades": 215,
+    "total_volume": 55845
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-16T23:00:00",
+    "num_trades": 104,
+    "total_volume": 15230
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T00:00:00",
+    "num_trades": 272,
+    "total_volume": 88064
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 379,
+    "total_volume": 25009
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 904,
+    "total_volume": 23490
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 439,
+    "total_volume": 14788
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 418,
+    "total_volume": 11692
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 342,
+    "total_volume": 9264
+  },
+  {
+    "symbol": "ADAUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 269,
+    "total_volume": 7403
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-16T20:00:00",
+    "num_trades": 301,
+    "total_volume": 51531
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-16T21:00:00",
+    "num_trades": 82,
+    "total_volume": 5077
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-16T22:00:00",
+    "num_trades": 163,
+    "total_volume": 7288
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-16T23:00:00",
+    "num_trades": 43,
+    "total_volume": 1850
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T00:00:00",
+    "num_trades": 265,
+    "total_volume": 16205
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 160,
+    "total_volume": 3631
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 142,
+    "total_volume": 6167
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 57,
+    "total_volume": 1707
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 52,
+    "total_volume": 1617
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 33,
+    "total_volume": 279
+  },
+  {
+    "symbol": "DOGEUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 39,
+    "total_volume": 782
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-16T20:00:00",
+    "num_trades": 232,
+    "total_volume": 29774
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-16T21:00:00",
+    "num_trades": 75,
+    "total_volume": 14069
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-16T22:00:00",
+    "num_trades": 227,
+    "total_volume": 20956
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-16T23:00:00",
+    "num_trades": 167,
+    "total_volume": 24564
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T00:00:00",
+    "num_trades": 360,
+    "total_volume": 34612
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 348,
+    "total_volume": 35726
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 215,
+    "total_volume": 37131
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 120,
+    "total_volume": 12285
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 131,
+    "total_volume": 14790
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 192,
+    "total_volume": 23644
+  },
+  {
+    "symbol": "SOLUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 105,
+    "total_volume": 14410
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-16T20:00:00",
+    "num_trades": 16,
+    "total_volume": 28
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-16T22:00:00",
+    "num_trades": 10,
+    "total_volume": 76
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-16T23:00:00",
+    "num_trades": 3,
+    "total_volume": 11
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T00:00:00",
+    "num_trades": 8,
+    "total_volume": 28
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 11,
+    "total_volume": 20
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 3,
+    "total_volume": 5
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 10,
+    "total_volume": 58
+  },
+  {
+    "symbol": "BNBUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 12,
+    "total_volume": 37
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-16T20:00:00",
+    "num_trades": 531,
+    "total_volume": 59897
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-16T21:00:00",
+    "num_trades": 764,
+    "total_volume": 5540
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-16T22:00:00",
+    "num_trades": 908,
+    "total_volume": 16242
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-16T23:00:00",
+    "num_trades": 934,
+    "total_volume": 2830
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T00:00:00",
+    "num_trades": 1495,
+    "total_volume": 22858
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T01:00:00",
+    "num_trades": 677,
+    "total_volume": 8485
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T02:00:00",
+    "num_trades": 2496,
+    "total_volume": 7599
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T03:00:00",
+    "num_trades": 808,
+    "total_volume": 5858
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T04:00:00",
+    "num_trades": 337,
+    "total_volume": 1968
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T05:00:00",
+    "num_trades": 137,
+    "total_volume": 573
+  },
+  {
+    "symbol": "XRPUSD",
+    "hour": "2025-05-17T06:00:00",
+    "num_trades": 58,
+    "total_volume": 886
+  }
+]
 ```
 
 ### 4.2. Category B: Ad-hoc Query APIs
