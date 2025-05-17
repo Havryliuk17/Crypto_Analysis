@@ -279,10 +279,15 @@ GET http://localhost:8000/query/ADAUSD/price
 
 ## 🧪 5. Results After System Run
 
-After ruuning the system during $$$ hours, the folloowing results are obtained.
+After ruuning the system during 12 hours, the following logs from the system obtained.
 
 ![Architecture of the system](images/containers_running.png)
 
+![bitmex-reader](images/bitmex-reader.png)
+
+![spark-job](images/spark-job.png)
+
+![Api](images/api.png)
 ---
 
 ## 🧰 6. Source Code Structure
